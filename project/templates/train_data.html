@@ -1,0 +1,45 @@
+{% extends 'base.html' %}  
+{% block body %}
+<div class='content-center text-center'>
+    <h1 class='text-center'>Training Progress</h1>
+    <ul id="progress-list"></ul>
+    <button class='btn btn-fill btn-danger' id="start-training">Start Training</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+
+        socket.on('message', function(data) {
+            console.log('Message from server:', data.data);
+            const progressList = document.getElementById('progress-list');
+            const listItem = document.createElement('li');
+            listItem.appendChild(document.createTextNode(data.data));
+            progressList.appendChild(listItem);
+        });
+
+        socket.on('disconnect', function() {
+            console.log('Disconnected from server');
+        });
+
+        const startTrainingButton = document.getElementById('start-training');
+
+        startTrainingButton.addEventListener('click', function() {
+            socket.emit('update', 'Training started...');
+            fetch('/run_model', {
+                method: 'POST',
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Training request sent successfully');
+                    window.location.href = '/result';
+                } else {
+                    console.error('Failed to send training request');
+                }
+            }).catch(error => {
+                console.error('Error while sending training request:', error);
+            });
+        });
+    </script>
+</div>
+{% endblock %}
