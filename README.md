@@ -48,12 +48,17 @@ Once the model achieves satisfactory performance, it can be deployed in real-wor
 Neural Networks provide a sophisticated and adaptive solution to the challenging problem of spam and ham message classification. Their ability to learn from data makes them effective in identifying patterns and adapting to the ever-changing tactics employed by spammers. As technology continues to advance, Neural Networks play a crucial role in enhancing the security and user experience of digital communication platforms.
 
 # TEAM LEADER
+
 JOHN CEDRICK CHU
 
 # TEAM MEMBERS 
-YUSUF XANDER ORTEGA 
+YUSUF XANDER ORTEGA
+
 SYDNEY CONTRERAS
+
 CHARLS BRENT  CAYABYAB
+
 JESSA REY REPOYLO
+
 # finals_neural_network
 pip install -r requirements.txt to download all libraries.
